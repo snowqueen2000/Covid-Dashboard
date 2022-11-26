@@ -17,6 +17,5 @@ for stat in mainStats:
     mainStatList.append(mainStat) 
     statNameList.append(statName)
     
-print(mainStatList)
-print(statNameList)
+print(f"There have been {mainStatList[0].strip()} {statNameList[0]}, {mainStatList[1]} {statNameList[1]}, and {mainStatList[2]} {statNameList[2]}")
 
