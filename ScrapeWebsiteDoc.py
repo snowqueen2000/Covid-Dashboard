@@ -38,7 +38,7 @@ class ScrapeWebsite():
 
         body = covid_table.tbody.find_all("tr") 
         body[0] #here is one example of HTML snippet for one row
-
+        
         #lets declare empty list data that will hold all rows data
         data = []
         for r in range(1,len(body)):
@@ -56,7 +56,7 @@ class ScrapeWebsite():
         #with headings as the columns
         df = pd.DataFrame(data,columns=headings)
         # df.head(10)
-        print(df)
+        # print(df)
 
         data = df[df["#"]!=""].reset_index(drop=True)
         # Data points with # value are the countries of the world while the data points with
@@ -68,7 +68,7 @@ class ScrapeWebsite():
 
         # Columns to keep
         cols = ['Country,Other', 'TotalDeaths',
-            'NewDeaths']
+            'NewDeaths', 'Deaths/1M pop', 'New Cases/1M pop']
         # Extract the columns we are interested in a display the first 5 rows
         data_final = data[cols]
         data_final.to_json(r'covid_data.json')
@@ -84,10 +84,12 @@ class ScrapeWebsite():
             if alldata["Country,Other"][i] == self.query_country:
                 self.total_deaths = alldata["TotalDeaths"][i]
                 self.new_deaths = alldata["NewDeaths"][i]
+                self.norm_deaths = alldata['Deaths/1M pop'][i]
+                self.norm_cases = alldata['New Cases/1M pop'][i]
                 query_country_num = counter
             counter += 1
         if query_country_num == -100:
             print("There was an error searching for that country")
 
-        return_string = "Data for "  + self.query_country + ":\n" + "Total deaths:" + self.total_deaths + "\n" + "New deaths:" + self.new_deaths
+        return_string = "Data for "  + self.query_country + ":\n" + "Total deaths:" + self.total_deaths + "\n" + "New deaths:" + self.new_deaths + "\n" + "Cases/1m: " + self.norm_deaths + "\n" + "Deaths/1M: " + self.norm_cases
         return return_string
