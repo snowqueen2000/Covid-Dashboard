@@ -97,4 +97,3 @@ class ScrapeWebsite():
             return_string = "Data for "  + self.query_country + ":\n" + "Total deaths:" + self.total_deaths + "\n" + "New deaths:" + self.new_deaths + "\n" + "Cases/1m: " + self.norm_deaths + "\n" + "Deaths/1M: " + self.norm_cases
             return return_string
     
-    
