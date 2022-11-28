@@ -93,5 +93,6 @@ class ScrapeWebsite():
                 # print("There was an error searching for that country")
  
             finDF = pd.DataFrame([self.query_country, self.total_deaths, self.new_deaths, self.norm_deaths, self.norm_cases], cols) 
+            finDF.to_csv("South Korea") # export df as csv. one line required for csv -> df
             #return_string = "Data for "  + self.query_country + ":\n" + "Total deaths:" + self.total_deaths + "\n" + "New deaths:" + self.new_deaths + "\n" + "Cases/1m: " + self.norm_deaths + "\n" + "Deaths/1M: " + self.norm_cases
             return finDF
