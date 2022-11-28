@@ -2,8 +2,13 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 
+# here is where our data is coming from
 link = 'https://www.worldometers.info/coronavirus/#countries'
+
+# this is the command that requests the data from the specified link above
 data = requests.get(link)
+
+#this uses beautiful soup to parse through the data provided
 soup = BeautifulSoup(data.text, 'lxml')
 
 # finding the main three stats on the dashboard
