@@ -73,23 +73,25 @@ class ScrapeWebsite():
         data_final = data[cols]
         data_final.to_json(r'covid_data.json')
 
-        filer = open('covid_data.json')
-        alldata = json.load(filer)
+        with open('covid_data.json', 'r') as filer:
+            alldata = json.load(filer)
 
-        counter = 0
-        query_country_num = -100
+            counter = 0
+            query_country_num = -100
 
-        for i in alldata["Country,Other"]:
-            counter_string = str(counter)
-            if alldata["Country,Other"][i] == self.query_country:
-                self.total_deaths = alldata["TotalDeaths"][i]
-                self.new_deaths = alldata["NewDeaths"][i]
-                self.norm_deaths = alldata['Deaths/1M pop'][i]
-                self.norm_cases = alldata['New Cases/1M pop'][i]
-                query_country_num = counter
-            counter += 1
-        if query_country_num == -100:
-            print("There was an error searching for that country")
+            for i in alldata["Country,Other"]:
+                counter_string = str(counter)
+                if alldata["Country,Other"][i] == self.query_country:
+                    self.total_deaths = alldata["TotalDeaths"][i]
+                    self.new_deaths = alldata["NewDeaths"][i]
+                    self.norm_deaths = alldata['Deaths/1M pop'][i]
+                    self.norm_cases = alldata['New Cases/1M pop'][i]
+                    query_country_num = counter
+                counter += 1
+            if query_country_num == -100:
+                print("There was an error searching for that country")
 
-        return_string = "Data for "  + self.query_country + ":\n" + "Total deaths:" + self.total_deaths + "\n" + "New deaths:" + self.new_deaths + "\n" + "Cases/1m: " + self.norm_deaths + "\n" + "Deaths/1M: " + self.norm_cases
-        return return_string
+            return_string = "Data for "  + self.query_country + ":\n" + "Total deaths:" + self.total_deaths + "\n" + "New deaths:" + self.new_deaths + "\n" + "Cases/1m: " + self.norm_deaths + "\n" + "Deaths/1M: " + self.norm_cases
+            return return_string
+    
+    
