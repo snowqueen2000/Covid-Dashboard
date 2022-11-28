@@ -1,7 +1,4 @@
-
 from ScrapeWebsiteDoc import ScrapeWebsite
-
-#Lets define the URL
 
 url="https://www.worldometers.info/coronavirus/"    
 country = "S. Korea"

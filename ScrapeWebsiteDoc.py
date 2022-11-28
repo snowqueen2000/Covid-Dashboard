@@ -36,7 +36,7 @@ class ScrapeWebsite():
             headings.append(th.text.replace("\n","").strip())
 
         body = covid_table.tbody.find_all("tr") 
-        body[0] # here is one example of HTML snippet for one row
+        # body[0] # here is one example of HTML snippet for one row
         
         # declare empty list data that will hold all rows data
         data = []
@@ -44,13 +44,10 @@ class ScrapeWebsite():
             row = [] # empty lsit to hold one row data
             for tr in body[r].find_all("td"):
                 row.append(tr.text.replace("\n","").strip())
-                #append row data to row after removing newlines escape and triming unnecesary spaces
+                # append row data to row after removing newlines escape and triming unnecesary spaces
             if self.query_country in row:
-                print(row)
                 data.append(row)
             
-        # print(type(data))
-        # print(data)
         # data contains all the rows excluding header
         # row contains data for one row
 
@@ -58,7 +55,6 @@ class ScrapeWebsite():
         # with headings as the columns
         df = pd.DataFrame(data,columns=headings)
         # df.head(10)
-        # print(df)
 
         data = df[df["#"]!=""].reset_index(drop=True)
         # Data points with # value are the countries of the world while the data points with
@@ -69,8 +65,7 @@ class ScrapeWebsite():
         #I found out that removing duplicates removes the values for the past two days and keep today's
 
         # Columns to keep
-        cols = ['Country,Other', 'TotalDeaths',
-            'NewDeaths', 'Deaths/1M pop', 'New Cases/1M pop']
+        cols = ['Country,Other', 'TotalDeaths', 'NewDeaths', 'Deaths/1M pop', 'New Cases/1M pop']
         
         # Extract the columns we are interested in a display the first 5 rows
         data_final = data[cols]
@@ -78,22 +73,25 @@ class ScrapeWebsite():
 
         with open('covid_data.json', 'r') as filer:
             alldata = json.load(filer)
-
             counter = 0
             query_country_num = -100
 
             for i in alldata["Country,Other"]:
                 counter_string = str(counter)
+                
                 if alldata["Country,Other"][i] == self.query_country:
                     self.total_deaths = alldata["TotalDeaths"][i]
                     self.new_deaths = alldata["NewDeaths"][i]
                     self.norm_deaths = alldata['Deaths/1M pop'][i]
                     self.norm_cases = alldata['New Cases/1M pop'][i]
                     query_country_num = counter
+                    
                 counter += 1
+                
             if query_country_num == -100:
-                print("There was an error searching for that country")
-
-            return_string = "Data for "  + self.query_country + ":\n" + "Total deaths:" + self.total_deaths + "\n" + "New deaths:" + self.new_deaths + "\n" + "Cases/1m: " + self.norm_deaths + "\n" + "Deaths/1M: " + self.norm_cases
-            return return_string
-    
+                raise LookupError("Failed to find the desired country")
+                # print("There was an error searching for that country")
+ 
+            finDF = pd.DataFrame([self.query_country, self.total_deaths, self.new_deaths, self.norm_deaths, self.norm_cases], cols) 
+            #return_string = "Data for "  + self.query_country + ":\n" + "Total deaths:" + self.total_deaths + "\n" + "New deaths:" + self.new_deaths + "\n" + "Cases/1m: " + self.norm_deaths + "\n" + "Deaths/1M: " + self.norm_cases
+            return finDF
