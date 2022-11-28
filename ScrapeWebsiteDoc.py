@@ -21,9 +21,9 @@ class ScrapeWebsite():
         soup = BeautifulSoup(html_content, "lxml")
         #print(soup.prettify()) # print the parsed data of html
 
-        #we pick the id of the table we want to scrape and extract HTML code for that particular table only
+        # pick the id of the table we want to scrape and extract HTML code for that particular table only
         covid_table = soup.find("table", attrs={"id": "main_table_countries_today"})
-        # print(type(covid_table))
+        
         #the head will form our columns
         head = covid_table.thead.find_all("tr") 
         head #the headers are contained in this HTML code
@@ -34,12 +34,11 @@ class ScrapeWebsite():
             # print(th.text)
             #headings.append(td.b.text.replace('\n', ' ').strip())
             headings.append(th.text.replace("\n","").strip())
-        # print(headings)
 
         body = covid_table.tbody.find_all("tr") 
-        body[0] #here is one example of HTML snippet for one row
+        body[0] # here is one example of HTML snippet for one row
         
-        #lets declare empty list data that will hold all rows data
+        # declare empty list data that will hold all rows data
         data = []
         for r in range(1,len(body)):
             row = [] # empty lsit to hold one row data
@@ -55,8 +54,8 @@ class ScrapeWebsite():
         # data contains all the rows excluding header
         # row contains data for one row
 
-        #We can now pass data into a pandas dataframe
-        #with headings as the columns
+        # We can now pass data into a pandas dataframe
+        # with headings as the columns
         df = pd.DataFrame(data,columns=headings)
         # df.head(10)
         # print(df)
@@ -67,11 +66,12 @@ class ScrapeWebsite():
         
         data = data.drop_duplicates(subset = ["Country,Other"])
         #Reason to drop duplicates : Worldometer reports data for 3 days: today and 2 days back
-        #I found out that removing duplicates removes the values for the bast two days and keep today's
+        #I found out that removing duplicates removes the values for the past two days and keep today's
 
         # Columns to keep
         cols = ['Country,Other', 'TotalDeaths',
             'NewDeaths', 'Deaths/1M pop', 'New Cases/1M pop']
+        
         # Extract the columns we are interested in a display the first 5 rows
         data_final = data[cols]
         data_final.to_json(r'covid_data.json')
