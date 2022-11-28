@@ -71,9 +71,9 @@ class ScrapeWebsite():
             'NewDeaths']
         # Extract the columns we are interested in a display the first 5 rows
         data_final = data[cols]
-        data_final.to_json(r'C:\\Users\\dalle\\Desktop\\programming project\\Covid-Dashboard\\covid_data.json')
+        data_final.to_json(r'covid_data.json')
 
-        filer = open('C:\\Users\\dalle\\Desktop\\programming project\\Covid-Dashboard\\covid_data.json')
+        filer = open('covid_data.json')
         alldata = json.load(filer)
 
         counter = 0
