@@ -46,7 +46,10 @@ class ScrapeWebsite():
             for tr in body[r].find_all("td"):
                 row.append(tr.text.replace("\n","").strip())
                 #append row data to row after removing newlines escape and triming unnecesary spaces
-            data.append(row)
+            if self.query_country in row:
+                print(row)
+                data.append(row)
+            
         # print(type(data))
         # print(data)
         # data contains all the rows excluding header
