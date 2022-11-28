@@ -4,7 +4,7 @@ from ScrapeWebsiteDoc import ScrapeWebsite
 #Lets define the URL
 
 url="https://www.worldometers.info/coronavirus/"    
-country = "Guatemala"
+country = "S. Korea"
 
 firstinq = ScrapeWebsite()
 print(firstinq.scrape_country(url,country))
