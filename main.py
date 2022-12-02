@@ -1,12 +1,14 @@
-
 from ScrapeWebsiteDoc import ScrapeWebsite
 
-#Lets define the URL
+# define the URL
+url="https://www.worldometers.info/coronavirus/"
 
-url="https://www.worldometers.info/coronavirus/"    
-country = "S. Korea"
+# define desired country to get data on
+country = "Brazil"
 
+# intialize class object
 firstinq = ScrapeWebsite()
+
+# print the results of the inquiry
 print(firstinq.scrape_country(url,country))
 
-# print("this is the new deaths " + firstinq.new_deaths)
