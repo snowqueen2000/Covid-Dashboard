@@ -1,10 +1,10 @@
-from ScrapeWebsiteDoc import ScrapeWebsite
+from ScrapeWebsite import ScrapeWebsite
 
 # define the URL
 url="https://www.worldometers.info/coronavirus/"
 
 # define desired country to get data on
-country = "Brazil"
+country = "Mexico"
 
 # intialize class object
 firstinq = ScrapeWebsite()

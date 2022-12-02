@@ -119,7 +119,6 @@ class ScrapeWebsite():
                     self.norm_deaths = alldata['Deaths/1M pop'][i]
                     self.norm_cases = alldata['New Cases/1M pop'][i]
                     query_country_num = counter
-                    
                 counter += 1
             
             # if this variable didnt get  overwritten then there was a problem
@@ -130,5 +129,4 @@ class ScrapeWebsite():
             # return_string = str(data_final.to_dict())
             return_string = "Data for "  + self.query_country + ":\n" + "Total deaths:" + self.total_deaths + "\n" + "New deaths:" + self.new_deaths + "\n" + "Cases/1m: " + self.norm_deaths + "\n" + "Deaths/1M: " + self.norm_cases
             return return_string
-    
     
