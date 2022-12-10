@@ -5,7 +5,6 @@ import json
 import os.path
 from os import path
 import time
-import numpy as np
 
 class ScrapeWebsite():
     def __init__(self):
@@ -109,7 +108,7 @@ class ScrapeWebsite():
             # parse through all countries in .json file
             for i in alldata["Country,Other"]:
                 # save what data point we are currently on
-                # counter_string = str(counter) this line doesn't do anything
+                counter_string = str(counter)
 
                 # check to see if the current data is that of the desired country 
                 if alldata["Country,Other"][i] == self.query_country:
@@ -126,15 +125,10 @@ class ScrapeWebsite():
             # if this variable didnt get  overwritten then there was a problem
             if query_country_num == -100:
                 print("There was an error searching for that country")
-                
+
             # prepare return line
-            # return_string = "Data for "  + self.query_country + ":\n" + "Total deaths:" + self.total_deaths + "\n" + "New deaths:" + self.new_deaths + "\n" + "Cases/1m: " + self.norm_deaths + "\n" + "Deaths/1M: " + self.norm_cases
-            dictVals = [self.total_deaths, self.new_deaths, self.norm_deaths, self.norm_cases] 
-            dataDict = dict(zip(cols[1:len(cols)], dictVals)) # creates dictionary to turn into df
-            cD = pd.DataFrame([dataDict]) # cD means countryData. this is the dataframe
-            cD.index = [str(self.query_country)]
-            #cD.replace(r'^\s+$', np.nan, regex=True) # trying to replace the absent cells with 0's! 
-            #cD.fillna(0)
-            #print(cD["NewDeaths"])
-            return cD
+            # return_string = str(data_final.to_dict())
+            return_string = "Data for "  + self.query_country + ":\n" + "Total deaths:" + self.total_deaths + "\n" + "New deaths:" + self.new_deaths + "\n" + "Cases/1m: " + self.norm_deaths + "\n" + "Deaths/1M: " + self.norm_cases
+            return return_string
+    
     
