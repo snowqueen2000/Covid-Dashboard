@@ -125,10 +125,11 @@ class ScrapeWebsite():
             # if this variable didnt get  overwritten then there was a problem
             if query_country_num == -100:
                 print("There was an error searching for that country")
-
+                
             # prepare return line
-            # return_string = str(data_final.to_dict())
-            return_string = "Data for "  + self.query_country + ":\n" + "Total deaths:" + self.total_deaths + "\n" + "New deaths:" + self.new_deaths + "\n" + "Cases/1m: " + self.norm_deaths + "\n" + "Deaths/1M: " + self.norm_cases
-            return return_string
+            # return_string = "Data for "  + self.query_country + ":\n" + "Total deaths:" + self.total_deaths + "\n" + "New deaths:" + self.new_deaths + "\n" + "Cases/1m: " + self.norm_deaths + "\n" + "Deaths/1M: " + self.norm_cases
+            
+            
+            return self.total_deaths
     
     
