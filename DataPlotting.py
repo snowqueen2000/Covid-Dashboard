@@ -23,7 +23,7 @@ f = open('covid_data.json')
 # returns JSON object as a dictionary
 data = json.load(f)
 data = pd.DataFrame(data)
-#print(data) 
+print(data) 
   
 # Closing file
 f.close()
@@ -53,22 +53,23 @@ show(p)
 '''
 
 from bokeh.plotting import figure, output_file, show
-  
-# file to save the model
-output_file("gfg.html")
       
-# instantiating the figure object
-graph = figure(title = "Bokeh Vertical Bar Graph")
-  
 # x-coordinates of the top edges
-top = list(data['TotalDeaths'])
-top = [int(x) for x in top]
-print(top)
+#top = data['TotalDeaths']
+#top = data['TotalDeaths']
+#print(type(list(top)))
+#top = [int(x) for x in top]
+#top = list(map(int, list(data['TotalDeaths'])))
+#print(type(top[0]))
+#print(top)
+
+top = [689998, 1106378, 19952, 330525, 116422, 11906, 5235, 9046, 51512]
+
+p = figure(x_range=data['Country,Other'], height=250, title="COVID Deaths Per Country",
+           toolbar_location=None, tools="")
 
 # plotting the graph
-graph.vbar(x = list(data['Country,Other']),
-           top = top,
-           width = 0.5)
+p.vbar(x = list(data['Country,Other']), top = top, width=0.9)
   
 # displaying the model
-show(graph)
+show(p)
