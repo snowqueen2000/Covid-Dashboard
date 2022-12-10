@@ -1,4 +1,4 @@
-from ScrapeWebsiteDoc import ScrapeWebsite
+from Scrape import ScrapeWebsite
 
 url="https://www.worldometers.info/coronavirus/"    
 country = "Brazil"
