@@ -108,7 +108,7 @@ class ScrapeWebsite():
             # parse through all countries in .json file
             for i in alldata["Country,Other"]:
                 # save what data point we are currently on
-                counter_string = str(counter)
+                # counter_string = str(counter) this line doesn't do anything
 
                 # check to see if the current data is that of the desired country 
                 if alldata["Country,Other"][i] == self.query_country:
@@ -128,8 +128,10 @@ class ScrapeWebsite():
                 
             # prepare return line
             # return_string = "Data for "  + self.query_country + ":\n" + "Total deaths:" + self.total_deaths + "\n" + "New deaths:" + self.new_deaths + "\n" + "Cases/1m: " + self.norm_deaths + "\n" + "Deaths/1M: " + self.norm_cases
-            
-            
-            return self.total_deaths
-    
+            dictVals = [self.total_deaths, self.new_deaths, self.norm_deaths, self.norm_cases]
+            dataDict = dict(zip(cols[1:len(cols)], dictVals))
+            countryData = pd.DataFrame([dataDict])
+            countryData.index = [str(self.query_country)]
+
+            return countryData
     
