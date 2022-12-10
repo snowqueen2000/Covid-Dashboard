@@ -131,6 +131,10 @@ class ScrapeWebsite():
             dictVals = [self.total_deaths, self.new_deaths, self.norm_deaths, self.norm_cases]
             dataDict = dict(zip(cols[1:len(cols)], dictVals))
             countryData = pd.DataFrame([dataDict])
+            for i in countryData:
+                if i == ' ':
+                    countryData[i].replace(0)
+                    
             countryData.index = [str(self.query_country)]
 
             return countryData
