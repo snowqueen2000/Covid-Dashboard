@@ -5,7 +5,7 @@ from bokeh.io import show
 import pandas as pd
 
 # read in country csv
-SouthKorea = pd.read_csv('South Korea')
+SouthKorea = pd.read_csv('South Korea.txt')
 
 # DF.iat[] is a pandas command to access the data at an index of ... 
 # if you want to use the row/col name use DF.at[]
