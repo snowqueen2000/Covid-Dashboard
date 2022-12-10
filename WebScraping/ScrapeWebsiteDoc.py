@@ -5,6 +5,7 @@ import json
 import os.path
 from os import path
 import time
+import numpy as np
 
 class ScrapeWebsite():
     def __init__(self):
@@ -128,14 +129,12 @@ class ScrapeWebsite():
                 
             # prepare return line
             # return_string = "Data for "  + self.query_country + ":\n" + "Total deaths:" + self.total_deaths + "\n" + "New deaths:" + self.new_deaths + "\n" + "Cases/1m: " + self.norm_deaths + "\n" + "Deaths/1M: " + self.norm_cases
-            dictVals = [self.total_deaths, self.new_deaths, self.norm_deaths, self.norm_cases]
-            dataDict = dict(zip(cols[1:len(cols)], dictVals))
-            countryData = pd.DataFrame([dataDict])
-            for i in countryData:
-                if i == ' ':
-                    countryData[i].replace(0)
-                    
-            countryData.index = [str(self.query_country)]
-
-            return countryData
+            dictVals = [self.total_deaths, self.new_deaths, self.norm_deaths, self.norm_cases] 
+            dataDict = dict(zip(cols[1:len(cols)], dictVals)) # creates dictionary to turn into df
+            cD = pd.DataFrame([dataDict]) # cD means countryData. this is the dataframe
+            cD.index = [str(self.query_country)]
+            #cD.replace(r'^\s+$', np.nan, regex=True) # trying to replace the absent cells with 0's! 
+            #cD.fillna(0)
+            #print(cD["NewDeaths"])
+            return cD
     
