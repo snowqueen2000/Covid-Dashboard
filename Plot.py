@@ -3,7 +3,7 @@ from bokeh.models import ColumnDataSource, TableColumn, DataTable
 from bokeh.models.widgets import DataTable, DateFormatter, TableColumn
 from bokeh.io import show
 import pandas as pd
-from Dash import cD
+from Main import cD
 
 # read in country csv
 # SouthKorea = pd.read_csv('South Korea.txt')
