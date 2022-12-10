@@ -5,9 +5,10 @@ from bokeh.io import show
 import pandas as pd
 from Main import cD
 
+print(cD) # cD is the data frame exported from the main script!! We can manipulate it and graph it here 
+
 # read in country csv
 # SouthKorea = pd.read_csv('South Korea.txt')
-print(cD)
 # DF.iat[] is a pandas command to access the data at an index of ... 
 # if you want to use the row/col name use DF.at[]
 # in this case col 0 is the name of the stats, col 1 are the stats
