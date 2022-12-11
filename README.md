@@ -13,4 +13,12 @@ Our data is collected using the webpage https://www.worldometers.info/coronaviru
 
 Once ScrapeWebsite initializes, it will go on to create a new file, covid_data.json, to store each set of data. Our .json file is organized so that it is only created once, and each time a new country is called in the main script, covid_data.json will append the new set. If a user decides to re-run main.py using an already listed country, there is no new data added to the .json file. 
 
+Part 2: Data Display 
+
+We have created a function DataPlotting.py that converts the data collected in Part 1 into user-friendly graphs. We begin by converting the data contained with covid_data.json to a DataFrame using Pandas. 
+
+In order for bokeh to properly read the data within our DataFrame, we removed all commas from each column. 
+
+Once our data was correctely formatted, we turned our DataGrame into a graph. Each graph takes a country contained with our JSON file and displays each of its stats in a bar graph. 
+
 https://github.com/matheusfelipeog/worldometer
