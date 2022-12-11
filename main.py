@@ -7,12 +7,13 @@ from DataPlotting import PlotData
 url="https://www.worldometers.info/coronavirus/"
 
 # define desired country to get data on
-country = "Japan"
+countries = ["USA", "India", "S. Korea", "Japan", "Russia"]
 
 # intialize class object
 firstinq = ScrapeWebsite()
 
 # print the results of the inquiry
-print(firstinq.scrape_country(url,country))
+for country in countries:
+    print(firstinq.scrape_country(url,country))
   
 PlotData()
