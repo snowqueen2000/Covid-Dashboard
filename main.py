@@ -1,6 +1,7 @@
 from ScrapeWebsite import ScrapeWebsite
 from bokeh.plotting import figure, show
 import json
+from DataPlotting import PlotData
 
 # define the URL
 url="https://www.worldometers.info/coronavirus/"
@@ -14,13 +15,4 @@ firstinq = ScrapeWebsite()
 # print the results of the inquiry
 print(firstinq.scrape_country(url,country))
   
-# Opening JSON file
-# f = open('covid_data.json')
-  
-# returns JSON object as 
-# a dictionary
-# data = json.load(f)
-  
-# a = data.values()
-
-# print(a)
+PlotData()
