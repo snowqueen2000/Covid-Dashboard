@@ -5,7 +5,7 @@ def PlotData():
     import json
     import pandas as pd
     from bokeh.transform import factor_cmap
-    from bokeh.palettes import Magma
+    #from bokeh.palettes import Magma
 
     # Opening JSON file
     f = open('covid_data.json')
@@ -32,7 +32,7 @@ def PlotData():
     sorted_countries_deaths1M = sorted(countries, key = lambda x: totalDeaths_1M[countries.index(x)]) # sorts from low to high for deaths per 1M
 
     p1 = figure(x_range=sorted_countries_deaths, height=250, title="COVID Deaths Per Country", # defining figure dimensions for plot 1 (p1)
-            toolbar_location=None, tools="", fill_color=factor_cmap('fruits', palette=Magma, factors=countries)) 
+            toolbar_location=None, tools="") 
 
     p1.vbar(x = countries, top = totalDeaths, width=0.9) 
 
