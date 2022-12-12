@@ -6,7 +6,7 @@ INSTRUCTIONS TO RUN CODE:
 1. In git bash use the command "git clone https://github.com/snowqueen2000/Covid-Dashboard.git"
 2. Open main.py 
 3. Enter a list of countries you would like to see Covid data for
-4. Run main.py, it calls the function ScrapeWebsite.py to retrieve current data on the website https://www.worldometers.info/coronavirus/ , then, the main.py calls a DataPlotting function that redirects the user to an html page with the data displayed.
+4. Run main.py. This script calls the function ScrapeWebsite.py to retrieve current data on the website https://www.worldometers.info/coronavirus/ , then, calls the DataPlotting function that redirects the user to an html page with the data displayed.
 
 Part 1: Data Scraping 
 
