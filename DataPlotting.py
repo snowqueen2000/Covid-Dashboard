@@ -36,11 +36,13 @@ def PlotData():
     newCases_1M = [float(x) for x in data['New Cases/1M pop']]
     # creating a string list with the names of each country 
     countries = list(data['Country,Other'])
+    
     # sort the countries in order of resepcted data
     sorted_countries_totalDeaths = sorted(countries, key = lambda x: totalDeaths[countries.index(x)]) # sorts from low to high for total deaths
     sorted_countries_totalDeaths_1M = sorted(countries, key = lambda x: totalDeaths_1M[countries.index(x)]) # sorts from low to high for deaths per 1M
     sorted_countries_newDeaths = sorted(countries, key = lambda x: newDeaths[countries.index(x)]) # sorts from low to high for newDeaths
     sorted_countries_newCases_1M = sorted(countries, key = lambda x: newCases_1M[countries.index(x)]) # sorts from low to high for newDeaths
+    
     # defining figure dimensions for plot 1 (p1)
     p1 = figure(x_range=sorted_countries_totalDeaths, title="COVID Deaths Per Country", 
             toolbar_location=None, tools="") 
